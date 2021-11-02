@@ -1,0 +1,13 @@
+FROM python:3.8
+
+ENV PYTHONUNBUFFERED=TRUE
+
+RUN python -m pip install --upgrade pip
+
+RUN pip --no-cache-dir install numpy pandas scikit-learn xgboost
+
+WORKDIR /app
+
+COPY ["train.py", "*.csv", "./"]
+
+ENTRYPOINT ["python", "train.py"]

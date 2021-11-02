@@ -1,0 +1,7 @@
+
+docker build -f Dockerfile-train -t attrition-train .
+docker run -it -v attrition-vol:/output attrition-train:latest
+
+
+docker build -f Dockerfile-predict -t attrition-predict .
+docker run -it -v attrition-vol:/output attrition-predict:latest

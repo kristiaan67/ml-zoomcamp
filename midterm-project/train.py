@@ -137,7 +137,7 @@ del df_val['attrition']
 del df_test['attrition']
 
 
-df_test.to_csv('output/attrition_test_data.csv', index=False)
+df_test.to_csv('/output/attrition_test_data.csv', index=False)
 
 ## Explorative Data Analysis
  
@@ -161,7 +161,9 @@ print(round(y_train.mean(), 2) * 100, "percent suffered from attrition, which ma
 numeric_feats = []
 categorical_feats = []
 for col in df_full_train.columns:
-    if (df_full_train[col].dtype == np.float64 or df_full_train[col].dtype == np.int64):
+    if col == 'overtime':
+        categorical_feats.append(col) # boolean feature is handled as categorical 
+    elif (df_full_train[col].dtype == np.float64 or df_full_train[col].dtype == np.int64):
         numeric_feats.append(col)
     else:
         categorical_feats.append(col)

@@ -39,6 +39,7 @@ def attrition_score():
     print("Attrition score: %s" % attrition_score)
     return(jsonify(attrition_score))
 
+# Test
 employee = {
     "age":48,
     "businesstravel":"Travel_Rarely",

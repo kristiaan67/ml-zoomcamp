@@ -23,7 +23,8 @@ while not stop:
 
 	response = requests.post(url, json=employee)
 	result = response.json()
-	print(f"employee: {employee}\nresult: {result}\n")
+	print(f"employee: {employee}\n")
+	print(f"result: {result}\n")
 
 	print("Stop? (y/n)")
 	stop = input() == 'y'

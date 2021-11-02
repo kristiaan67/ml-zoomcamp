@@ -2,9 +2,13 @@
 
 ## Predicting Employee Attrition
 
-Employee attrition is the process of employees leaving a company for example, through resignation for personal reasons or retirement.
-This prediction model tries to predict whether a employee might leave the company or not.
+### Problem
 
+Employee attrition is the process of employees leaving a company due to several reasons (for example: through resignation for personal reasons or retirement).
+If a company wants to keep valuable employees the HR department should be made aware of a possible attrition based on several features.
+
+This is what this prediction model is aimed to do, predicting the possibility that an employee might be set to leave.
+T
 The data set used is the *IBM HR Analytics Employee Attrition & Performance* and can be downloaded here: https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset
 
 ## Development
@@ -13,7 +17,7 @@ This repository contains the following files:
 
 - *WA_Fn-UseC_-HR-Employee-Attrition.csv*: the downloaded data set
 - *notebook.ipynb*: the jupyter notebook with the data preparation, explorative data analysis and the tuning of several machine learning models.
-- *train.py*: the python code generated out of the notebook that cleans, prepares the data and generates the machine learning models. The best performing model is saved as final model (attrition-model.bin).
+- *train.py*: the python code exported out of the notebook that cleans, prepares the data and generates the machine learning models. The best performing model is saved as final model (attrition-model.bin).
 - *predict.py*: the web service loading the saved machine learning model and offering a REST API to make predictions.
 - *request.py*: a test script that selects randomly employee entries from the test data set (exported to 'attrition_test_data.csv') and sends them to the prediction web service.  
 

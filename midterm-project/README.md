@@ -32,7 +32,8 @@ To build those docker containers, the following files are relevant:
 - *Dockerfile-predict*: the Dockerfile to build the 'prediction service' container.
 - *docker_cmds.txt*: documentation about building and running those containers.
 
-
+Be sure to run the 'train' container first, since this will create the machine learning model that is then used by the 'predition' container.
+This model is saved on the Docker volume 'attrition-vol'.
 The 'train' container is built as follows: 
 
 docker build -f Dockerfile-train -t attrition-train .

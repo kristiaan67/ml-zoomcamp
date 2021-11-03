@@ -19,7 +19,7 @@ This repository contains the following files:
 
 - *Pipfile*, *Pipfile.lock*: The pipenv environment files.
 
-To setup the pipenv environment on the local compouter simply run:
+To setup the pipenv environment on the local computer run:
 
     pip --no-cache-dir install pipenv (in pipenv is not installed yet)
 

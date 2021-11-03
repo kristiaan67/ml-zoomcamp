@@ -8,7 +8,6 @@ Employee attrition is the process of employees leaving a company due to several 
 If a company wants to keep valuable employees the HR department should be made aware of a possible attrition based on several features.
 
 This is what this prediction model is aimed to do, predicting the possibility that an employee might be set to leave.
-T
 The data set used is the *IBM HR Analytics Employee Attrition & Performance* and can be downloaded here: https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset
 
 ## Development

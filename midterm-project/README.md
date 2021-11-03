@@ -107,14 +107,20 @@ To finally deploy in the cloud:
 
 The model can be tested with the *request.py* file. The code goes in a loop and selects randomly one of the records in the test data set and sends it to the prediction service which returns a result that is printed on the console.
 
-Whether a local docker environment is used or the service on AWS Elastic Beanstalk is specified my the *--mode=* argument. It can take 2 values:
+Whether a local docker environment is used or the service on AWS Elastic Beanstalk is specified by the *--mode=* argument. It can take 2 values:
 
 - **local**: local docker environment
 - **aws**: AWS Elastic Beanstalk
 
 After each iteration one can stop the loop.
 
-    pipenv run python request.py --mode=local 	(or --mode=aws)
+So test the service on a local docker environment, one can:
+
+    pipenv run python request.py --mode=local
+
+or on AWS Elastic Beanstalk:
+
+    pipenv run python request.py --mode=aws
 
 
 Obviously one can also use other tools like *curl*. The endpoints are:

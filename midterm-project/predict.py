@@ -22,11 +22,10 @@ print(f"Machine Learning Model loaded from '%s'" % model_file)
 
 def predict_attrition(employee):
     X = dv.transform([employee])
-    y_pred = model.predict_proba(X)[:, 1]
+    y_pred = model.predict(X)
 
     result = {
-        'attrition_score': y_pred[0],
-        'attrition': bool(y_pred[0] >= 0.5)
+        'attrition?': bool(y_pred[0])
     }
     return(result)
 
@@ -35,9 +34,9 @@ def predict_attrition(employee):
 def attrition_score():
     employee = request.get_json()
     print(f"Received employee: {employee}")
-    attrition_score = predict_attrition(employee)
-    print("Attrition score: %s" % attrition_score)
-    return(jsonify(attrition_score))
+    attrition_res = predict_attrition(employee)
+    print("Attrition result: %s" % attrition_res)
+    return(jsonify(attrition_res))
 
 # Test
 employee = {
@@ -72,8 +71,8 @@ employee = {
     "yearssincelastpromotion":0,
     "yearswithcurrmanager":0
 }
-attrition_score = predict_attrition(employee)
-print(f"Attrition score: {attrition_score}")
+attrition_res = predict_attrition(employee)
+print(f"Attrition result: {attrition_res}")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=9696)

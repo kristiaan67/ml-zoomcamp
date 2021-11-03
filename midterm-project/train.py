@@ -147,9 +147,6 @@ df_test.to_csv('/output/attrition_test_data.csv', index=False)
 
 print("Null values:\n", df_full_train.isnull().sum())
 
-
-# **We don’t have to handle missing values** in the dataset: all the values in all the columns are present.
-
 # 2. Check the distribution of the target variable (majority vs. minority class)
 
 print("Distribution target variable:\n", y_train.value_counts())
@@ -168,7 +165,6 @@ for col in df_full_train.columns:
     else:
         categorical_feats.append(col)
             
-
 
 # Create dictionnaries
 

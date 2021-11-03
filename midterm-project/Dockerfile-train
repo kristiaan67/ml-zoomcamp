@@ -4,9 +4,13 @@ ENV PYTHONUNBUFFERED=TRUE
 
 RUN python -m pip install --upgrade pip
 
-RUN pip --no-cache-dir install numpy pandas scikit-learn xgboost
+RUN pip --no-cache-dir install pipenv
 
 WORKDIR /app
+
+COPY ["Pipfile", "Pipfile.lock", "./"]
+
+RUN pipenv install --deploy --system && rm -rf /root/.cache
 
 COPY ["train.py", "*.csv", "./"]
 

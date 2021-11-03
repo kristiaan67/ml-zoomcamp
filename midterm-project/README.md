@@ -19,6 +19,7 @@ This repository contains the following files:
 
 - *Pipfile*, *Pipfile.lock*: The pipenv environment files. To setup the pipenv environment on the local compouter simply run:
 
+    
     pip --no-cache-dir install pipenv (in pipenv is not installed yet)
 
     pipenv install
@@ -83,6 +84,6 @@ The model can be tested with the *request.py* file. The code goes in a loop and 
 After each iteration one can stop the loop.
 
     pipenv run python request.py
-    
+
 
 

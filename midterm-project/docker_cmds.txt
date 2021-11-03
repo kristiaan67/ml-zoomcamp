@@ -4,4 +4,4 @@ docker run -it -v attrition-vol:/output attrition-train:latest
 
 
 docker build -f Dockerfile-predict -t attrition-predict .
-docker run -it -v attrition-vol:/output attrition-predict:latest
+docker run -it -p 9696:9696 -v attrition-vol:/output attrition-predict:latest

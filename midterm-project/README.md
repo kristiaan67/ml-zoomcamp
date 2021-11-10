@@ -20,7 +20,7 @@ This repository contains the following files:
 
 To setup the pipenv environment on the local computer run:
 
-    pip --no-cache-dir install pipenv (in pipenv is not installed yet)
+    pip --no-cache-dir install pipenv (if pipenv is not installed yet)
 
     pipenv install
 

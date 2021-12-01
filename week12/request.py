@@ -15,5 +15,5 @@ data2 = {
 results = requests.post(url, json=data1).json()
 print(data1['url'], '->', results)
 
-results = requests.post(url, json=data2).json()
-print(data2['url'], '->', results)
+#results = requests.post(url, json=data2).json()
+#print(data2['url'], '->', results)

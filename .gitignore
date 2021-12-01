@@ -6,3 +6,5 @@ midterm-project/reviews
 *.zip
 week11/train
 week11/validation
+dogs_cats_10_0.687.h5
+cats-dogs-v2.tflite

@@ -15,9 +15,10 @@ import librosa
 import skimage.io
 
 import tensorflow as tf
-import tensorflow_io as tfio
 from tensorflow import keras
+import tensorflow_io as tfio
 
+from constants import *
 
 ## Global Variables
 
@@ -25,20 +26,7 @@ ROOT_DIR  = './dataset/cats_dogs'
 DATA_FILE = './dataset.zip'
 IMG_DIR   = './dataset/images'
 
-# All audio files will be resized to 7 seconds
-AUDIO_DURATION = 7
-
-# parameters to generate the Mel Spectograms
-N_MELS=256
-N_FFT=2048
-HOP_LENGTH=512
-
-# the dimensions of the Mel Spectogram images for the CNN
-IMG_WIDTH=302
-IMG_HEIGHT=256
-
 SEED = 2022
-
 
 ## Set up
 
@@ -317,5 +305,6 @@ checkpoint = keras.callbacks.ModelCheckpoint(
     monitor="val_accuracy"
 )
 model.fit(train_ds, epochs=num_epochs, validation_data=val_ds, callbacks=[checkpoint])
+
 
 print("Done.")

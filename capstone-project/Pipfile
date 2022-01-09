@@ -15,6 +15,7 @@ gunicorn = "*"
 scikit-image = "*"
 tensorflow = "*"
 pillow = "*"
+opencv-python = "*"
 
 [dev-packages]
 

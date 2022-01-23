@@ -13,3 +13,4 @@ capstone-project/tmp
 *.h5
 capstone-project/__pycache__
 capstone-project/cats_and_dogs
+*.tflite

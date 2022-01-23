@@ -77,12 +77,14 @@ PAGE_HTML = '''
     <!doctype html>
     <title>Upload Cat or Dog Audio</title>
     <h1>Upload Cat or Dog Audio</h1>
-    <form action="/dog_or_cat" method="post" enctype="multipart/form-data">
-      <input type="file" name="file" accept="audio/wav"/>
-      <br/><br/>
-      <input type="submit" value="Process"/>
-      <br/><br/><strong>Result:</strong> <span>@RESULT@</span>
-    </form>
+    <div>
+        <form action="/dog_or_cat" method="post" enctype="multipart/form-data">
+          <input type="file" name="file" accept="audio/wav"/>
+          <br/><br/>
+          <input type="submit" value="Process"/>
+          <br/><br/><strong>Result:</strong> <span>@RESULT@</span>
+        </form>
+    </div>
     '''
 
 @app.route('/', methods=['GET'])

@@ -4,6 +4,8 @@
 
 ## Imports
 
+import os
+
 import numpy as np
 
 import tflite_runtime.interpreter as tflite
@@ -15,19 +17,27 @@ from functions import prepare_mel_spectogram_image
 
 import urllib.request
 
-from flask import Flask, request, jsonify
+from flask import Flask, flash, request, redirect
 
 
 ## Global Variables
 
-app = Flask('Cats and Dogs App')
+MODEL_FILE = '/app/cats_and_dogs_v1.tflite'
+AUDIOS_FOLDER = '/app/audios'
+if not os.path.exists(AUDIOS_FOLDER):
+    os.makedirs(AUDIOS_FOLDER)
 
-model_file = '/app/cats_and_dogs_v1.tflite'
+IMAGES_FOLDER = '/app/images'
+if not os.path.exists(AUDIOS_FOLDER):
+    os.makedirs(AUDIOS_FOLDER)
+
+app = Flask('Cats and Dogs App')
+app.config['UPLOAD_FOLDER'] = AUDIOS_FOLDER
 
 # Load ML model
-interpreter = tflite.Interpreter(model_path=model_file)
+interpreter = tflite.Interpreter(model_path=MODEL_FILE)
 interpreter.allocate_tensors()
-    
+print(f"Loaded ML model: {MODEL_FILE}")    
 
 ## Functions
 
@@ -51,28 +61,52 @@ def predict_animal_class_image(img_file):
     return LABELS[int(y_pred[0].argmax())]
 
 
-def predict_animal_class_audio(audio_url):
-    img_file_name = audio_url[audio_url.rfind("/")+1:]
-    if img_file_name.rfind("?") > 0:
-        img_file_name = img_file_name[:img_file_name.rfind("?")]
+def predict_animal_class_audio(audio_file):
+    img_file_name = audio_file[audio_file.rfind("/")+1:]
     img_file_name = img_file_name.replace(".wav", ".png")
-    img_file = f'/app/tmp/{img_file_name}'
+    img_file = f'{AUDIOS_FOLDER}/{img_file_name}'
     
-    urllib.request.urlretrieve(audio_url, img_file)
     prepare_mel_spectogram_image(audio_file, img_file)
     return predict_animal_class_image(img_file)
 
 
 
+## Routes
+
+PAGE_HTML = '''
+    <!doctype html>
+    <title>Upload Cat or Dog Audio</title>
+    <h1>Upload Cat or Dog Audio</h1>
+    <form action="/dog_or_cat" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept="audio/wav"/>
+      <br/><br/>
+      <input type="submit" value="Process"/>
+      <br/><br/><strong>Result:</strong> <span>@RESULT@</span>
+    </form>
+    '''
+
+@app.route('/', methods=['GET'])
+def index():
+    return PAGE_HTML.replace('@RESULT@', '')
+
 @app.route('/dog_or_cat', methods=['POST'])
 def dog_or_cat():
-    data = request.get_json()
-    audio_url = data['url']
-    print(f"Processing sound file: {audio_url}")
-    result = predict_animal_class_audio(audio_url)
+    if 'file' not in request.files:
+        flash('No file part')
+        return redirect('/')
+
+    audio_file = request.files['file']
+    if audio_file.filename == '':
+        flash('No selected file')
+        return redirect('/')
+
+    audio_filepath = os.path.join(app.config['UPLOAD_FOLDER'], audio_file.filename)
+    audio_file.save(audio_filepath)
+    
+    result = predict_animal_class_audio(audio_filepath)
     print(f"Prediction result: {result}")
-    return jsonify(res)
+    return PAGE_HTML.replace('@RESULT@', result)
 
 
-if __name__ == '__main__':ß
+if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=9696)

@@ -47,7 +47,7 @@ Some common functions of the training and classification code is stored:
 ### ML Code
 
 - *notebook.ipynb*: the jupyter notebook describing the data preparation (i.e. generation of the Mel Spectograms) and the tuning of the CNN
-- *train.py*: the python code exported out of the notebook that generates the Mel Spectograms and the CNN. The best performing model is saved as final model: 'cats_and_dogs_v1_best.h5'.
+- *train.py*: the python code exported out of the notebook that generates the Mel Spectograms and the CNN. The best performing model should manually be saved as 'cats_and_dogs_v1_best.h5'.
 - *convert.py*: the python code that converts the Tensor Flow model to TensorFlow Lite: 'cats_and_dogs_v1.tflite'
 - *predict.py*: the web service loading the saved machine learning model and offering a (primitive) web frontend and REST API to upload .wav files and returning the classification.
 
@@ -59,11 +59,11 @@ Some common functions of the training and classification code is stored:
 
 Build the container: 
 
-    docker build -f Dockerfile -t dogs_cats_audio_service:latest .
+    docker build -f Dockerfile -t dogs-cats-audio-service:latest .
 
 Start the container:
 
-    docker run -it -p 9696:9696 dogs_cats_audio_service:latest
+    docker run -it -p 9696:9696 dogs-cats-audio-service:latest
 
     
 ### AWS Elastic Beanstalk
@@ -80,7 +80,7 @@ Start the pipenv shell:
 
 Execute the following commands:
 
-    eb init -p docker attrition-predict
+    eb init -p docker dogs-cats-audio-service-app [--region eu-west-1]
 
 
 To start/test the service locally:
@@ -89,16 +89,16 @@ To start/test the service locally:
 
 To finally deploy in the cloud:
 
-    eb create attrition-predict-env
+    eb create dogs-cats-audio-service-env --instance-type t4g.medium --single [--region eu-west-1]
 
 
 ## Test
 
 The model can be tested with the web frontend by uploading a .wav file. Some example wavfiles can be found in the 'test' directory of this repository.
-The classification result is shown beneath the 'Process' button.
+You can upload a .wav file and then click the 'Process' button, the classification result is then shown beneath the 'Process' button.
 
 The endpoints are:
 
 * Docker on local machine: http://localhost:9696/
-* AWS Elastic Beanstalk: http://attrition-predict-env.eba-smk4cc3d.us-west-2.elasticbeanstalk.com/
+* AWS Elastic Beanstalk: http://dogs-cats-audio-service-env.eba-a7bb5e4n.eu-west-1.elasticbeanstalk.com/
 

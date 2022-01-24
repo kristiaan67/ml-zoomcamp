@@ -15,8 +15,6 @@ import cv2
 from constants import *
 from functions import prepare_mel_spectogram_image
 
-import urllib.request
-
 from flask import Flask, flash, request, redirect
 
 

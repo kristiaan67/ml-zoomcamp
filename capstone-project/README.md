@@ -100,5 +100,5 @@ You can upload a .wav file and then click the 'Process' button, the classificati
 The endpoints are:
 
 * Docker on local machine: http://localhost:9696/
-* AWS Elastic Beanstalk: http://dogs-cats-audio-service-env.eba-a7bb5e4n.eu-west-1.elasticbeanstalk.com/
+* AWS Elastic Beanstalk: http://dogs-cats-audio-service-env.eba-jhgcmsq4.eu-west-1.elasticbeanstalk.com/
 

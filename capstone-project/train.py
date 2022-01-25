@@ -16,7 +16,6 @@ import skimage.io
 
 import tensorflow as tf
 from tensorflow import keras
-import tensorflow_io as tfio
 
 from constants import *
 
